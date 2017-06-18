@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="/">
     <title>ng Events</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" href="node_modules/ng2f-bootstrap/dist/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Polyfill(s) for older browsers -->
@@ -17,9 +18,22 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     
     <script src="systemjs.config.js"></script>
+    <script type="text/javascript">
+      System.import('app').catch(function(err){
+        console.error(err);
+      });
+    </script>
   </head>
   
-  <body class="container">
-    
+  <body >
+    <lostproperty-app></lostproperty-app>
+
   </body>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">&copy; 2017 Not actually a lost property application for a school</p>
+      </div>
+    </footer>
+  </body>
+
 </html>
