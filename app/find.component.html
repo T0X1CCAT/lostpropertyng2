@@ -1,5 +1,105 @@
 <!-- <toaster-container toaster-options="{'close-button':false, 'time-out':{ 'toast-warning': 2000, 'toast-error': 5000, 'toast-success': 5000 } }"></toaster-container>
- --><div class="well well-lg">
-   find 
+ -->
+ <div class="well well-lg">
+    <h3>Find an item</h3>
+    <form #findItemForm="ngForm" (ngSubmit)="findItems(findItemForm.value)" 
+        autocomplete="off" class="form-horizontal" novalidate>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemName">Item Name</label>
+                <input type="text"  
+                (ngModel)="itemName" name="itemName" required id="itemName" 
+                        name="itemName" 
+                        ng-model="model.searchModel.itemName" 
+                        class="form-control" 
+                        placeholder="Lost Property Name"
+                        >
+                <div class="help-block">  
+                </div>    
+            </div>
+        </div>  
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemCategory">Item Category</label>
+                <select 
+                        (ngModel)="itemCategory"
+                        name="itemCategory" 
+                        class="form-control" 
+                        id="itemCategory">
+                        <option *ngFor="let cat of categories" [value]="cat.name">{{cat.name}}</option>
+                </select>
+                <div class="help-block">  
+                </div>    
+            </div>
+        </div>  
+     	<div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemDate">Date Lost/Found</label>
+                <p class="input-group">
+                    <datepicker name="itemDate" [(ngModel)]="itemDate" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
+                </p>    
+                <div class="help-block">  
+                    
+                </div>    
+            </div>
+        </div>
+        <div class="form-group">
+            <div >
+            <button id="findSubmit" type="submit" class="btn btn-primary">Find</button>
+            </div>
+        </div>
+
+
+    </form> 
+    <div class="table-responsive">
+	    <table class="table table-striped">
+	        <thead>
+	            <tr>
+	                <th>Item Name</th>
+	           
+	                <th class="hidden-xs">Item Description</th>
+	                <th class="hidden-xs">Date Lost/Found</th>
+	                <th class="hidden-xs">Lost or Found</th>
+	                <th class="hidden-xs">Category</th>
+	            </tr>    
+
+	        </thead>
+	        <tbody>   
+	            <tr *ngFor="let item of items">
+	                <td>
+                        <!--
+	                    <a  ng-if="model.isLoggedIn()  && model.isAdminUser()" ng-link="['EditPlace', {id: item._id}]"
+                            <span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}
+                        </a>
+                        
+	                    <span  ng-if="!model.isLoggedIn()  || !model.isAdminUser()"><span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}</span>
+                        -->
+                        <span >
+                            <span [class]="{'glyphicon glyphicon-ok found':item.located==='true'}"></span>
+                            {{item.itemName}}
+                        </span>
+	                </td>
+	                <td class="hidden-xs">
+	                    {{item.itemDescription}} {{item.located}}
+	                </td>
+	                <td class="hidden-xs">
+	                    {{item.itemDate | date : 'dd/MM/yyyy'}}
+	                </td>
+	                <td class="hidden-xs">
+	                    {{item.itemLostOrFound}}
+	                </td>
+	                <td class="hidden-xs">
+	                    {{item.itemCategory.name}}
+	                </td>
+
+	            </tr>
+                
+	        </tbody>             
+	    </table> 
+
 	</div>          
-   
+    <div *ngIf="items.length===0" > 
+    	No Results
+    </div>
+ </div>

@@ -24,8 +24,11 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
       '@angular/upgrade/static': 'npm:@angular/upgrade/bundles/upgrade-static.umd.js',
+      'moment': 'node_modules/moment/moment.js',
+      'ngx-bootstrap': 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
       // other libraries
       'rxjs':                       'npm:rxjs',
+
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

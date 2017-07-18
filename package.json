@@ -1,9 +1,13 @@
 {
   "name": "ng2-fundamentals-demo",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.11.1"
+  },
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run server\" ",
+    "start": "tsc && concurrently \"npm run tsc:w\" \"MONGO_DB_URL='mongodb://localhost/lostproperty' JWT_SECRET='DHNR65@SH' node index.js\" ",
     "server": "node node_modules/ng2f-server/server.js",
+    "server-proper": "MONGO_DB_URL='mongodb://localhost/lostproperty' JWT_SECRET='DHNR65@SH' node server/index.js",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
   },
@@ -26,7 +30,11 @@
     "@angular/router": "4.0.0",
     "bootstrap": "^3.3.7",
     "core-js": "2.4.1",
+    "express-jwt": "^5.3.0",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.6",
     "ng2f-server": "^0.2.3",
+    "ngx-bootstrap": "^1.7.1",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
     "zone.js": "0.8.4"
