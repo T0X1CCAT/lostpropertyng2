@@ -27,7 +27,7 @@
       'moment': 'node_modules/moment/moment.js',
       'ngx-bootstrap': 'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
       // other libraries
-      'rxjs':                       'npm:rxjs',
+      'rxjs': 'npm:rxjs',
 
     },
     // packages tells the System loader how to load when no filename and/or no extension

@@ -9,21 +9,30 @@ import {HomeComponent} from './home.component'
 import {FindComponent} from './find.component'
 import {CategoryService} from './shared/category.service'
 import {ItemService} from './shared/item.service'
+import {AuthenticationService} from './shared/authentication.service'
+import {LoginComponent} from './shared/login.component'
 
 
 import {appRoutes} from './routes'
 
 import {LostPropertyAppComponent} from './lostProperty-app.component'
+
+import { TOASTR_TOKEN, Toastr} from './shared/toastr.service'
+
+declare let toastr: Toastr;
+
 @NgModule({
 	imports:[BrowserModule,
 			RouterModule.forRoot(appRoutes),
 			FormsModule, HttpModule,
 			DatepickerModule.forRoot()],
-	providers:[CategoryService, ItemService],
+	providers:[CategoryService, ItemService, AuthenticationService,
+			{ provide: TOASTR_TOKEN, useValue: toastr }],
 	declarations:[LostPropertyAppComponent,
 					NavbarComponent,
 					HomeComponent,
-					FindComponent],
+					FindComponent,
+					LoginComponent],
 	bootstrap:[LostPropertyAppComponent]
 })
 export class AppModule{}

@@ -76,8 +76,8 @@
 	                    <span  ng-if="!model.isLoggedIn()  || !model.isAdminUser()"><span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}</span>
                         -->
                         <span >
-                            <span [class]="{'glyphicon glyphicon-ok found':item.located==='true'}"></span>
-                            {{item.itemName}}
+                            <span [ngClass]="{'glyphicon glyphicon-ok found':item.located}"></span>
+                            {{item.itemName}} 
                         </span>
 	                </td>
 	                <td class="hidden-xs">
