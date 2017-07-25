@@ -1,10 +1,10 @@
 import {Component,Inject } from '@angular/core'
-import {AuthenticationService} from './authentication.service'
+import {AuthenticationService} from './shared/authentication.service'
 import {Router} from '@angular/router'
-import { TOASTR_TOKEN, Toastr} from '../shared/toastr.service';
+import { TOASTR_TOKEN, Toastr} from './shared/toastr.service';
 
 @Component({
-	templateUrl: '/app/shared/login.component.html'
+	templateUrl: '/app/login.component.html'
 			
 })
 

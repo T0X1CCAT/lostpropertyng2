@@ -10,8 +10,10 @@ import {FindComponent} from './find.component'
 import {CategoryService} from './shared/category.service'
 import {ItemService} from './shared/item.service'
 import {AuthenticationService} from './shared/authentication.service'
-import {LoginComponent} from './shared/login.component'
-
+import {LoginComponent} from './login.component'
+import {AddCategoryComponent} from './add-category.component'
+import {ListCategoriesComponent} from './list-categories.component'
+import {RegisterComponent} from './register.component'
 
 import {appRoutes} from './routes'
 
@@ -32,7 +34,10 @@ declare let toastr: Toastr;
 					NavbarComponent,
 					HomeComponent,
 					FindComponent,
-					LoginComponent],
+					LoginComponent,
+					AddCategoryComponent,
+					ListCategoriesComponent,
+					RegisterComponent],
 	bootstrap:[LostPropertyAppComponent]
 })
 export class AppModule{}

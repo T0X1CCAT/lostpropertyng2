@@ -1,0 +1,28 @@
+  <div class="well well-lg">
+    <div>
+        <h3>Create a new category that lost property items can be saved against</h3>
+    </div>   
+    <form autocomplete="off" #addCategoryForm="ngForm" (ngSubmit)="addCategory(addCategoryForm.value)" 
+                class="form-horizontal" novalidate name="addCategoryForm">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="categoryName">Category Name</label>
+                <input type="text" required="" 
+                        name="name" 
+                        (ngModel)="name" 
+                        class="form-control" 
+                        id="categoryName" 
+                        placeholder="Category Name"
+                        required>
+                <div class="help-block">
+                    <em *ngIf="addCategoryForm.controls.name?.touched && addCategoryForm.controls.name?.invalid">Name is required</em>
+                </div>    
+            </div>
+        </div>  
+        <div class="form-group">
+            <div >
+                <button type="submit" [disabled]="addCategoryForm.invalid" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>        

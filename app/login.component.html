@@ -5,7 +5,7 @@
     </div>   
         <form  autocomplete="off" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <div class="row">
-                <div class="form-group col-sm-6" [ngClass]="{ 'has-error': loginForm.$submitted && loginForm.email.$invalid}">
+                <div class="form-group col-sm-6">
                     <label for="email">Email</label>
                     <input type="text" required="" 
                             (ngModel)="email" 
@@ -14,15 +14,13 @@
                             id="email" 
                             placeholder="Email Address"
                             required>
-                    <div class="help-block"  
-                        ng-messages="loginForm.email.$error" 
-                        ng-show="loginForm.$submitted">
-                        <p ng-message="required">Email is required</p>
+                    <div class="help-block">
+                        <em *ngIf="loginForm.controls.email?.touched && loginForm.controls.email?.invalid" >Email is required</em>
                     </div>    
                 </div>
             </div>
             <div class="row">      
-                <div class="form-group col-sm-6" [ngClass]="{ 'has-error': loginForm.$submitted &&loginForm.password.$invalid}">
+                <div class="form-group col-sm-6">
                     <label for="email">Password</label>
                     <input type="password" required="" 
                             name="password" 
@@ -31,16 +29,14 @@
                             id="password" 
                             placeholder="Password"
                             required>
-                    <div class="help-block"  
-                        ng-messages="loginForm.password.$error" 
-                        ng-show="loginForm.$submitted">
-                        <p ng-message="required">Password is required</p>
+                    <div class="help-block">
+                        <em *ngIf="loginForm.controls.password?.touched && loginForm.controls.password?.invalid">Password is required</em>
                     </div>    
                 </div>
             </div>  
             <div class="form-group">
                 <div >
-                <button type="submit" class="btn btn-primary">Submit Login</button>
+                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Submit Login</button>
                 </div>
             </div>
         </form>

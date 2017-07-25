@@ -1,0 +1,57 @@
+  <div class="well well-lg">
+    <div>
+            <h3>Register to start using the lost property app</h3>
+    </div>   
+        <form  autocomplete="off" #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">        
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="email">Email</label>
+                    <input type="text" required="" 
+                            name="email" 
+                            (ngModel)="email" 
+                            class="form-control" 
+                            id="email" 
+                            placeholder="Email Address"
+                            required>
+                    <div class="help-block">
+                        <em *ngIf="registerForm.controls.email?.touched && registerForm.controls.email?.invalid">Email is required</em>
+                    </div>    
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6" >
+                    <label for="email">Name</label>
+                    <input type="text" required="" 
+                            name="name" 
+                            (ngModel)="name" 
+                            class="form-control" 
+                            id="name" 
+                            placeholder="Name"
+                            required>
+                    <div class="help-block">
+                        <em *ngIf="registerForm.controls.name?.touched && registerForm.controls.name?.invalid">Name is required</em>
+                    </div>    
+                </div>
+            </div>            
+            <div class="row">      
+                <div class="form-group col-sm-6" >
+                    <label for="email">Password</label>
+                    <input type="password" required="" 
+                            name="password" 
+                            (ngModel)="password" 
+                            class="form-control" 
+                            id="email" 
+                            placeholder="Password"
+                            required>
+                    <div class="help-block">
+                        <em *ngIf="registerForm.controls.password?.touched && registerForm.controls.password?.invalid">Password is required</em>
+                    </div>    
+                </div>
+            </div>  
+            <div class="form-group">
+                <div >
+                <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Submit Registration</button>
+                </div>
+            </div>
+        </form>
+    </div>        
