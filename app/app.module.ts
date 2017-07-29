@@ -14,14 +14,20 @@ import {LoginComponent} from './login.component'
 import {AddCategoryComponent} from './add-category.component'
 import {ListCategoriesComponent} from './list-categories.component'
 import {RegisterComponent} from './register.component'
+import {DateInputComponent} from './shared/date-input.component'
+import {PlaceItemComponent} from './place.component'
 
 import {appRoutes} from './routes'
 
 import {LostPropertyAppComponent} from './lostProperty-app.component'
 
 import { TOASTR_TOKEN, Toastr} from './shared/toastr.service'
+import {JQ_TOKEN} from './shared/jQuery.service'
+import {MOMENT_TOKEN} from './shared/moment.service'
 
 declare let toastr: Toastr;
+declare let jQuery: Object;
+declare let moment: Object;
 
 @NgModule({
 	imports:[BrowserModule,
@@ -29,7 +35,9 @@ declare let toastr: Toastr;
 			FormsModule, HttpModule,
 			DatepickerModule.forRoot()],
 	providers:[CategoryService, ItemService, AuthenticationService,
-			{ provide: TOASTR_TOKEN, useValue: toastr }],
+			{ provide: TOASTR_TOKEN, useValue: toastr },
+			{provide: JQ_TOKEN, useValue:jQuery},
+			{provide: MOMENT_TOKEN, useValue:moment}],
 	declarations:[LostPropertyAppComponent,
 					NavbarComponent,
 					HomeComponent,
@@ -37,7 +45,9 @@ declare let toastr: Toastr;
 					LoginComponent,
 					AddCategoryComponent,
 					ListCategoriesComponent,
-					RegisterComponent],
+					RegisterComponent,
+					DateInputComponent,
+					PlaceItemComponent],
 	bootstrap:[LostPropertyAppComponent]
 })
 export class AppModule{}

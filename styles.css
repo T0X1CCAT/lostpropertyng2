@@ -118,3 +118,19 @@ body{
 a.paging-control{
     cursor:pointer;
 }
+
+.date-input .input-group-addon{
+    background-color:lightgrey;
+}
+
+.dateInputHidden{
+    display:none;
+}
+
+date-input .well{
+    /*
+    for some reason datepicker has a well 
+    */
+    background-color: inherit;
+    border:0px;
+}

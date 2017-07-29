@@ -1,0 +1,27 @@
+
+
+
+<div class="input-group date-input">
+  <input type="text" 
+        class="form-control"  
+        disabled
+        [value]="data" 
+        (change)="onChange($event)" 
+        (keyup)="onChange($event)">
+    <span class="input-group-addon glyphicon glyphicon-calendar"  (click)="showDatePicker('dateLost')"></span>
+    <span class="input-group-addon glyphicon glyphicon-remove"  (click)="clearDate()"></span>
+
+</div>
+<div class="dateInputHidden" id="dateLost">
+    <datepicker (selectionDone)="newDateSelected($event)" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+</div>
+<!--
+<input type="text" required="" 
+                        [value]="data" 
+                        (change)="onChange($event)" 
+                        (keyup)="onChange($event)" 
+                        class="form-control" 
+                        placeholder="Category Name"
+                        required>
+
+-->                        

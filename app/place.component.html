@@ -1,0 +1,24 @@
+  <div class="well well-lg">
+    <div>
+        <h3>Create a new lost item</h3>
+    </div>   
+    <form autocomplete="off" #placeItemForm="ngForm" (ngSubmit)="placeItem(placeItemForm.value)" 
+                class="form-horizontal" novalidate name="placeItemForm">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="dateLost">Date lost</label>
+
+                <date-input [(ngModel)]="dateLost" name="dateLost"></date-input>
+                <div class="help-block">
+                    <em >Date is required</em>
+                </div>    
+            </div>
+        </div>  
+        <p>form is valid: {{ placeItemForm.valid ? 'true' : 'false' }}</p>
+        <div class="form-group">
+            <div >
+                <button type="submit" [disabled]="placeItemForm.invalid" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>        
