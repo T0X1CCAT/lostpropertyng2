@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router'
 import { FormsModule }   from '@angular/forms';
 import {HttpModule} from '@angular/http'
 import { DatepickerModule } from 'ngx-bootstrap';
+import { TimepickerModule } from 'ngx-bootstrap';
 import {NavbarComponent} from './nav/navbar.component'
 import {HomeComponent} from './home.component'
 import {FindComponent} from './find.component'
@@ -16,6 +17,9 @@ import {ListCategoriesComponent} from './list-categories.component'
 import {RegisterComponent} from './register.component'
 import {DateInputComponent} from './shared/date-input.component'
 import {PlaceItemComponent} from './place.component'
+import {Error404Component} from './shared/404.component'
+import {ItemExistsRouteActivator} from './shared/item-exists-route-activator.service'
+import {ItemResolverService} from './shared/item-resolver.service'
 
 import {appRoutes} from './routes'
 
@@ -31,10 +35,15 @@ declare let moment: Object;
 
 @NgModule({
 	imports:[BrowserModule,
-			RouterModule.forRoot(appRoutes),
+			RouterModule.forRoot(appRoutes,{useHash: true}),
 			FormsModule, HttpModule,
-			DatepickerModule.forRoot()],
-	providers:[CategoryService, ItemService, AuthenticationService,
+			DatepickerModule.forRoot(),
+		TimepickerModule.forRoot()],
+	providers:[CategoryService, 
+				ItemService, 
+				AuthenticationService,
+				ItemExistsRouteActivator,
+				ItemResolverService,
 			{ provide: TOASTR_TOKEN, useValue: toastr },
 			{provide: JQ_TOKEN, useValue:jQuery},
 			{provide: MOMENT_TOKEN, useValue:moment}],
@@ -47,7 +56,8 @@ declare let moment: Object;
 					ListCategoriesComponent,
 					RegisterComponent,
 					DateInputComponent,
-					PlaceItemComponent],
+					PlaceItemComponent,
+					Error404Component],
 	bootstrap:[LostPropertyAppComponent]
 })
 export class AppModule{}

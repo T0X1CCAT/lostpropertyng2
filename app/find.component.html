@@ -34,13 +34,10 @@
         </div>  
      	<div class="row">
             <div class="form-group col-sm-6">
-                <label for="itemDate">Date Lost/Found</label>
-                <p class="input-group">
-                    <datepicker name="itemDate" [(ngModel)]="itemDate" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
-                    <button type="button" class="btn btn-sm btn-danger" (click)="clear()">Clear</button>
-                </p>    
-                <div class="help-block">  
-                    
+                <label for="itemDate">Date lost</label>
+
+                <date-input [(ngModel)]="itemDate" name="itemDate"></date-input>
+                <div class="help-block">
                 </div>    
             </div>
         </div>
@@ -75,13 +72,18 @@
                         
 	                    <span  ng-if="!model.isLoggedIn()  || !model.isAdminUser()"><span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}</span>
                         -->
-                        <span >
+                        <a  *ngIf="authentication.isLoggedIn() && authentication.currentUser().admin===true" 
+                            [routerLink]="['/editPlace', {id: item._id}]">
                             <span [ngClass]="{'glyphicon glyphicon-ok found':item.located}"></span>
                             {{item.itemName}} 
+                        </a>
+
+                        <span  *ngIf="!authentication.isLoggedIn()  || authentication.currentUser().admin!==true">
+                            <span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}
                         </span>
 	                </td>
 	                <td class="hidden-xs">
-	                    {{item.itemDescription}} {{item.located}}
+	                    {{item.itemDescription}}
 	                </td>
 	                <td class="hidden-xs">
 	                    {{item.itemDate | date : 'dd/MM/yyyy'}}

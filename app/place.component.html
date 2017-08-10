@@ -1,24 +1,138 @@
   <div class="well well-lg">
     <div>
-        <h3>Create a new lost item</h3>
+        <h3 *ngIf="!_id">Create a new lost item</h3>
+        <h3 *ngIf="_id">Edit an item <span *ngIf="located===true" class="located">FOUND</span></h3>
     </div>   
-    <form autocomplete="off" #placeItemForm="ngForm" (ngSubmit)="placeItem(placeItemForm.value)" 
+    <form autocomplete="off" #placeItemForm="ngForm" (ngSubmit)="placeItem(placeItemForm)" 
                 class="form-horizontal" novalidate name="placeItemForm">
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemName">Item name</label>
+
+                <input type="text" required="" 
+                        name="itemName" 
+                        [(ngModel)]="itemName" 
+                        class="form-control" 
+                        id="itemName" 
+                        placeholder="Lost Property Name"
+                        required>                
+                <div class="help-block">
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemName)">Item Name is required</em>
+                </div>    
+            </div>
+        </div>  
+
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemDescription">Item description</label>
+
+                <textarea required="" 
+                        name="itemDescription" 
+                        [(ngModel)]="itemDescription" 
+                        class="form-control" 
+                        id="itemDescription" 
+                        placeholder="Lost Property Description"
+                        required></textarea>
+                <div class="help-block">
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemDescription)">Item Name is required</em>
+                </div>    
+            </div>
+        </div>  
+
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemCategory">Item Category</label>
+                <select [compareWith]="compareCategory"
+                        required
+                        [(ngModel)]="itemCategory"
+                        name="itemCategory" 
+                        class="form-control" 
+                        id="itemCategory">
+                        <option *ngFor="let cat of categories" [ngValue]="cat">{{cat.name}}</option>
+                </select>
+                <div class="help-block">  
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemCategory)">Item Category is required</em>
+                </div>    
+            </div>
+        </div>  
+        
+
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="dateLost">Date lost</label>
 
-                <date-input [(ngModel)]="dateLost" name="dateLost"></date-input>
+                <date-input [(ngModel)]="itemDate" name="itemDate"></date-input>
                 <div class="help-block">
-                    <em >Date is required</em>
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemDate)">Date lost is required</em>
                 </div>    
             </div>
         </div>  
-        <p>form is valid: {{ placeItemForm.valid ? 'true' : 'false' }}</p>
-        <div class="form-group">
-            <div >
-                <button type="submit" [disabled]="placeItemForm.invalid" class="btn btn-primary">Save</button>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemTime">Time Lost/Found</label>
+                    <timepicker [(ngModel)]="itemTime" [showMeridian]="false" name="itemTime"></timepicker>
+                <div class="help-block">
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemTime)">Time lost is required</em>
+                </div>    
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemLostOrFound">Lost or Found</label>
+                <select required="" 
+                        name="itemLostOrFound" 
+                        [(ngModel)]="itemLostOrFound" 
+                        class="form-control" 
+                        id="itemLostOrFound" 
+                        required>
+                        <option value="">Select</option>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>        
+                </select>
+                <div class="help-block">
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemLostOrFound)">Lost or found is required</em>
+                </div>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="itemLocation">Item Location <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="left" title="Where was the item lost or found?"></span></label>
+                <input type="text" required="" 
+                        name="itemLocation" 
+                        [(ngModel)]="itemLocation" 
+                        class="form-control" 
+                        id="itemLocation" 
+                        placeholder="Lost Property Location"
+                        required>
+                <div class="help-block">
+                    <em *ngIf="isInvalid(placeItemForm.controls.itemLocation)">Item location is required</em>                
+                </div>    
+            </div>
+        </div>
+        <div >
+            <button type="submit" *ngIf="showSaveButton" class="btn btn-primary">Save</button>
+            <button *ngIf="showUpdateButton" id="updateItem" type="button" (click)="updateItem(placeItemForm)" class="btn btn-primary">Update</button>
+            <button *ngIf="showDeleteButton" id="deleteSubmit" type="button" data-toggle="modal" data-target="#deleteConfirm" class="btn btn-danger">Delete</button>
+            <button *ngIf="showFoundButton" id="locatedSubmit" type="button" (click)="itemLocated()" class="btn btn-success">Mark as Found</button>
+        </div>
+
+        <div class="modal fade" id="deleteConfirm" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Delete Item Confirmation Required</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you wish to delete the item ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="deleteItem()">Save changes</button>
+                </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
     </form>
 </div>        

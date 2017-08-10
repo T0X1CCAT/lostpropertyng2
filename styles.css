@@ -134,3 +134,7 @@ date-input .well{
     background-color: inherit;
     border:0px;
 }
+
+.glyphicon{
+    top:0px;
+}

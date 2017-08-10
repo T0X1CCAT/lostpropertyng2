@@ -10,7 +10,8 @@ import { ControlValueAccessor,
 @Component({
     templateUrl:'/app/shared/date-input.component.html',
     selector:'date-input',
-    styles: [`.date-input .form-control[disabled] {background-color:white}
+    styles: [`.date-input .form-control[disabled] {background-color:white;border-right:0px}
+        .input-group.date-input{border-right:0px}
     `],
     providers: [
     {
@@ -48,9 +49,7 @@ export class DateInputComponent
     public writeValue(obj: any) {
         if (obj) {
             this.data = obj;
-            // this will format it with 4 character spacing
-            // this.jsonString = 
-            //         JSON.stringify(this.data, undefined, 4); 
+            
         }
     }
 

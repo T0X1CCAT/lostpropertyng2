@@ -5,7 +5,7 @@
   <input type="text" 
         class="form-control"  
         disabled
-        [value]="data" 
+        [value]="data | date:'dd/MM/yyyy'" 
         (change)="onChange($event)" 
         (keyup)="onChange($event)">
     <span class="input-group-addon glyphicon glyphicon-calendar"  (click)="showDatePicker('dateLost')"></span>
@@ -13,15 +13,6 @@
 
 </div>
 <div class="dateInputHidden" id="dateLost">
-    <datepicker (selectionDone)="newDateSelected($event)" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+    <datepicker [(ngModel)]="data" (selectionDone)="newDateSelected($event)" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
 </div>
-<!--
-<input type="text" required="" 
-                        [value]="data" 
-                        (change)="onChange($event)" 
-                        (keyup)="onChange($event)" 
-                        class="form-control" 
-                        placeholder="Category Name"
-                        required>
-
--->                        
+   
