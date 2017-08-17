@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- Polyfill(s) for older browsers -->
+    <!-- for dev   
     <script src="node_modules/core-js/client/shim.min.js"></script>
-
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
@@ -20,12 +20,22 @@
     <script src="node_modules/toastr/build/toastr.min.js"></script>
     <script src="node_modules/moment/min/moment.min.js"></script>
 
-    <!-- <script src="systemjs.config.js"></script> -->
-    <!-- <script type="text/javascript">
+    <script src="systemjs.config.js"></script> 
+    <script type="text/javascript">
       System.import('app').catch(function(err){
         console.error(err);
       });
     </script> -->
+
+    <!-- for prod -->
+    <script src="dist/shim.min.js"></script>
+    <script src="dist/jquery.min.js"></script>
+    <script src="dist/bootstrap.min.js"></script>
+    <script src="dist/zone.min.js"></script>
+    <!-- <script src="dist/system.src.js"></script> -->
+    <script src="dist/toastr.min.js"></script>
+    <script src="dist/moment.min.js"></script>
+
   </head>
   
   <body >
