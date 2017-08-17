@@ -41,10 +41,14 @@
     "zone.js": "0.8.4"
   },
   "devDependencies": {
-    "concurrently": "3.2.0",
-    "typescript": "2.1.1",
     "@types/core-js": "0.9.34",
-    "@types/node": "6.0.46"
+    "@types/node": "6.0.46",
+    "concurrently": "3.2.0",
+    "rollup": "^0.47.4",
+    "rollup-plugin-commonjs": "^8.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "typescript": "2.1.1"
   },
   "repository": {}
 }

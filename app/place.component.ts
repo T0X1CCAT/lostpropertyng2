@@ -82,7 +82,7 @@ export class PlaceItemComponent implements OnInit{
     }
 
     compareCategory(category1, category2){
-        if(category1._id === category2._id){
+        if(category2 && category1._id === category2._id){
             return true;
 
         }else{
@@ -94,7 +94,7 @@ export class PlaceItemComponent implements OnInit{
         if(!form.invalid){
              this.itemService.updateItem(form.value).subscribe(response =>{
                 if(response.status==='ok'){
-                    this.toastr.success("item successfully placed");
+                    this.toastr.success("item successfully updated");
                    
                 }
             });

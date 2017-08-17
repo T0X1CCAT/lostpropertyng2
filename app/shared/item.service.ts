@@ -1,5 +1,5 @@
 import {Http,Response,Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/RX'
+import {Observable} from 'rxjs/Observable'
 import {IItem} from './item.model'
 import { Injectable,Inject } from '@angular/core'
 import {AuthenticationService} from './authentication.service'

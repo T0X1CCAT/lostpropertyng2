@@ -1,5 +1,5 @@
 import {Http,Response,Headers, RequestOptions} from '@angular/http'
-import {Observable} from 'rxjs/RX'
+import {Observable} from 'rxjs/Observable'
 import { Injectable } from '@angular/core'
 import {IUser} from './user.model'
 
