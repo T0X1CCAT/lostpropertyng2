@@ -6,9 +6,11 @@ import * as moment from 'moment';
 import {ItemService} from './shared/item.service'
 import {IItem} from './shared/item.model'
 import {AuthenticationService} from './shared/authentication.service'
+import {PagingService} from './shared/paging.service'
 
 @Component({
-	templateUrl: '/app/find.component.html'
+	templateUrl: '/app/find.component.html',
+	providers:[PagingService]
 			
 })
 export class FindComponent implements OnInit{
@@ -20,7 +22,8 @@ export class FindComponent implements OnInit{
 
 	constructor(private authentication:AuthenticationService,
 				 private categoryService:CategoryService, 
-				  private itemService:ItemService){
+				  private itemService:ItemService,
+				 private pagingService:PagingService){
 
 	}
 	
@@ -28,6 +31,7 @@ export class FindComponent implements OnInit{
 		console.log(formValues);
 		this.itemService.findItems(formValues).subscribe(items => {
 			this.items = items;
+			this.pagingService.setPagingCollection(items, 5);
 		});
 		
 		
@@ -38,6 +42,7 @@ export class FindComponent implements OnInit{
 	ngOnInit(){
 		this.categoryService.getCategories().subscribe(categories => {
 			this.categories = categories
+
 		});
 
 	}

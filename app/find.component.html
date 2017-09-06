@@ -63,15 +63,8 @@
 
 	        </thead>
 	        <tbody>   
-	            <tr *ngFor="let item of items">
+	            <tr *ngFor="let item of pagingService.page">
 	                <td>
-                        <!--
-	                    <a  ng-if="model.isLoggedIn()  && model.isAdminUser()" ng-link="['EditPlace', {id: item._id}]"
-                            <span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}
-                        </a>
-                        
-	                    <span  ng-if="!model.isLoggedIn()  || !model.isAdminUser()"><span ng-class="{'glyphicon glyphicon-ok found':item.located}"></span>{{item.itemName}}</span>
-                        -->
                         <a  *ngIf="authentication.isLoggedIn() && authentication.currentUser().admin===true" 
                             [routerLink]="['/editPlace', {id: item._id}]">
                             <span [ngClass]="{'glyphicon glyphicon-ok found':item.located}"></span>
@@ -99,7 +92,7 @@
                 
 	        </tbody>             
 	    </table> 
-
+        <paging-footer></paging-footer>
 	</div>          
     <div *ngIf="items.length===0" > 
     	No Results

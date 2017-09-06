@@ -21,6 +21,9 @@ import {PlaceItemComponent} from './place.component'
 import {Error404Component} from './shared/404.component'
 import {ItemExistsRouteActivator} from './shared/item-exists-route-activator.service'
 import {ItemResolverService} from './shared/item-resolver.service'
+import {PagingFooter} from './shared/paging-footer.component'
+
+
 
 import {appRoutes} from './routes'
 
@@ -54,6 +57,7 @@ declare let moment: Object;
 					FindComponent,
 					LoginComponent,
 					AddCategoryComponent,
+					PagingFooter,
 					ListCategoriesComponent,
 					RegisterComponent,
 					DateInputComponent,
