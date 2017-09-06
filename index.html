@@ -6,13 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+    <link rel="stylesheet" href="dist/css/toastr.min.css">
     <link rel="stylesheet" href="node_modules/toastr/build/toastr.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Polyfill(s) for older browsers -->
+    <!-- for dev   
     <script src="node_modules/core-js/client/shim.min.js"></script>
-
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
@@ -25,7 +26,16 @@
       System.import('app').catch(function(err){
         console.error(err);
       });
-    </script>
+    </script> -->
+    <!-- for prod -->
+    <script src="dist/shim.min.js"></script>
+    <script src="dist/jquery.min.js"></script>
+    <script src="dist/bootstrap.min.js"></script>
+    <script src="dist/zone.min.js"></script>
+    <!-- <script src="dist/system.src.js"></script> -->
+    <script src="dist/toastr.min.js"></script>
+    <script src="dist/moment.min.js"></script>
+
   </head>
   
   <body >
@@ -37,6 +47,7 @@
         <p class="text-muted">&copy; 2017 Not actually a lost property application for a school</p>
       </div>
     </footer>
+    <script src="dist/build.js"></script>
   </body>
 
 </html>
